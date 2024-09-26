@@ -10,8 +10,11 @@ public class Game extends JFrame {
 
     private BufferedImage img;
 
-    public Game(){
+    private double timePerFrames;
+    private long lastFrame;
 
+    public Game(){
+        timePerFrames = 1000000000 / 60.0;
         importImg();
 
         setSize(640, 640);
@@ -36,7 +39,20 @@ public class Game extends JFrame {
         }
     }
 
+    private void gameLoop(){
+        while(true){
+            if(System.nanoTime() - lastFrame >= timePerFrames) {
+                lastFrame = System.nanoTime();
+                repaint();
+            }else{
+
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
         Game game = new Game();
+        game.gameLoop();
     }
 }
