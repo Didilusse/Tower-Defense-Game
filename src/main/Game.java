@@ -1,3 +1,5 @@
+package main;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,19 +20,22 @@ public class Game extends JFrame implements Runnable {
 
         importImg();
 
-        setSize(640, 640);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         gameScreen = new GameScreen(img);
+
         add(gameScreen);
+        pack();
+
+
         setVisible(true);
 
     }
 
     private void importImg() {
 
-        InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
+        InputStream is = getClass().getResourceAsStream("/main/spriteatlas.png");
 
         try {
             img = ImageIO.read(is);
@@ -72,19 +77,22 @@ public class Game extends JFrame implements Runnable {
         int frames = 0;
         int updates = 0;
 
+        long now;
+
         while (true) {
 
+            now = System.nanoTime();
             // Render
-            if (System.nanoTime() - lastFrame >= timePerFrame) {
+            if (now - lastFrame >= timePerFrame) {
                 repaint();
-                lastFrame = System.nanoTime();
+                lastFrame = now;
                 frames++;
             }
 
             // Update
-            if (System.nanoTime() - lastUpdate >= timePerUpdate) {
+            if (now - lastUpdate >= timePerUpdate) {
                 updateGame();
-                lastUpdate = System.nanoTime();
+                lastUpdate = now;
                 updates++;
             }
 
@@ -98,5 +106,5 @@ public class Game extends JFrame implements Runnable {
         }
 
     }
-    
+
 }
