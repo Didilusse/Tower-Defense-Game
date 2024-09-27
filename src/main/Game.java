@@ -3,17 +3,11 @@ package main;
 import inputs.KeyboardListener;
 import inputs.MyMouseListener;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 public class Game extends JFrame implements Runnable {
 
     private GameScreen gameScreen;
-    private BufferedImage img;
     private Thread gameThread;
 
     private final double FPS_SET = 120.0;
@@ -24,12 +18,10 @@ public class Game extends JFrame implements Runnable {
 
     public Game() {
 
-        importImg();
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        gameScreen = new GameScreen(img);
+        gameScreen = new GameScreen(this);
 
         add(gameScreen);
         pack();
@@ -46,19 +38,6 @@ public class Game extends JFrame implements Runnable {
         addKeyListener(keyboardListener);
 
         requestFocus();
-    }
-
-
-    private void importImg() {
-
-        InputStream is = getClass().getResourceAsStream("/main/spriteatlas.png");
-
-        try {
-            img = ImageIO.read(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     private void start() {
