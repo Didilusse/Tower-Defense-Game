@@ -3,6 +3,7 @@ package managers;
 import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 
+import helper.LoadSave;
 import objects.Tile;
 public class TileManager {
 
@@ -22,6 +23,7 @@ public class TileManager {
     }
 
     private void loadAtlas() {
+        atlas = LoadSave.getSpriteAtlas();
     }
 
     public BufferedImage getSprite(int id) {
