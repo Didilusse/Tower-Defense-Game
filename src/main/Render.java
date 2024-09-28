@@ -45,7 +45,7 @@ public class Render {
 
     private void importImg() {
 
-        InputStream is = getClass().getResourceAsStream("/res/spriteatlas.png");
+        InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
 
         try {
             img = ImageIO.read(is);
