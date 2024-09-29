@@ -1,6 +1,6 @@
 package helper;
 
-public class LevelBuilder {
+public class LevelBuild {
 
 
     public static int[][] getLevelData(){
