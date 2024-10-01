@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 
 import UI.MyButton;
 import main.Game;
+import static main.GameStates.*;
 
 public class Menu extends GameScene implements SceneMethods {
 
@@ -35,6 +36,13 @@ public class Menu extends GameScene implements SceneMethods {
     @Override
     public void render(Graphics g) {
         drawButton(g);
+    }
+
+    @Override
+    public void mouseClicked(int x, int y) {
+        if(bPlaying.getBounds().contains(x, y)) {
+            SetGameState(PLAYING);
+        }
     }
 
     private void drawButton(Graphics g) {

@@ -1,6 +1,7 @@
 package inputs;
 
 import main.Game;
+import main.GameStates;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -18,7 +19,18 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if(e.getButton() == MouseEvent.BUTTON1) {
-            System.out.println("X coords: " + e.getX() + "Y coords: " + e.getY());
+            switch(GameStates.gameState){
+                case MENU:
+                    game.getMenu().mouseClicked(e.getX(), e.getY());
+                    break;
+                case PLAYING:
+                    break;
+                case SETTINGS:
+                    break;
+                default:
+                    break;
+
+            }
         }
     }
 
