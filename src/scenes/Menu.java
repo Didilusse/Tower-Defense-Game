@@ -9,6 +9,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import UI.MyButton;
 import main.Game;
 
 public class Menu extends GameScene implements SceneMethods {
@@ -17,20 +18,27 @@ public class Menu extends GameScene implements SceneMethods {
     private ArrayList<BufferedImage> sprites = new ArrayList<>();
     private Random random;
 
+    private MyButton bPlaying, bSettings, bExit;
+
     public Menu(Game game) {
         super(game);
         random = new Random();
         importImg();
         loadSprites();
+        initButtons();
+    }
+
+    private void initButtons() {
+        bPlaying = new MyButton("Playing", 100, 100, 100, 30);
     }
 
     @Override
     public void render(Graphics g) {
-        for (int y = 0; y < 20; y++) {
-            for (int x = 0; x < 20; x++) {
-                g.drawImage(sprites.get(getRndInt()), x * 32, y * 32, null);
-            }
-        }
+        drawButton(g);
+    }
+
+    private void drawButton(Graphics g) {
+        bPlaying.draw(g);
     }
 
     private void importImg() {
