@@ -21,4 +21,9 @@ public class Settings extends GameScene implements SceneMethods {
     public void mouseClicked(int x, int y) {
 
     }
+
+    @Override
+    public void mouseMoved(int x, int y) {
+        
+    }
 }

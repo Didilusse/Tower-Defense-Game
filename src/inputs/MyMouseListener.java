@@ -15,6 +15,21 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
         this.game = game;
     }
 
+    @Override
+    public void mouseMoved(MouseEvent e) {
+            switch(GameStates.gameState) {
+                case MENU:
+                    game.getMenu().mouseMoved(e.getX(), e.getY());
+                    break;
+                case PLAYING:
+                    break;
+                case SETTINGS:
+                    break;
+                default:
+                    break;
+
+            }
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -59,8 +74,5 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
 
     }
 
-    @Override
-    public void mouseMoved(MouseEvent e) {
 
-    }
 }

@@ -45,6 +45,11 @@ public class Menu extends GameScene implements SceneMethods {
         }
     }
 
+    @Override
+    public void mouseMoved(int x, int y) {
+
+    }
+
     private void drawButton(Graphics g) {
         bPlaying.draw(g);
     }
