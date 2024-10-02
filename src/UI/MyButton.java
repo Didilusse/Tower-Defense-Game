@@ -38,14 +38,12 @@ public class MyButton {
             g.setColor(Color.gray);
         else
             g.setColor(Color.white);
-        g.setColor(Color.white);
         g.fillRect(x, y, width, height);
     }
 
     private void drawText(Graphics g) {
         int w = g.getFontMetrics().stringWidth(text);
         int h = g.getFontMetrics().getHeight();
-        g.setColor(Color.black);
         g.drawString(text, x - w / 2 + width / 2, y + h / 2 + height / 2);
     }
 

@@ -47,7 +47,10 @@ public class Menu extends GameScene implements SceneMethods {
 
     @Override
     public void mouseMoved(int x, int y) {
-
+        bPlaying.setMouseOver(false);
+        if(bPlaying.getBounds().contains(x, y)) {
+            bPlaying.setMouseOver(true);
+        }
     }
 
     private void drawButton(Graphics g) {
