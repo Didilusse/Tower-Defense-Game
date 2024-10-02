@@ -42,4 +42,14 @@ public class Playing extends GameScene implements SceneMethods {
     public void mouseMoved(int x, int y) {
 
     }
+
+    @Override
+    public void mousePressed(int x, int y) {
+
+    }
+    @Override
+    public void mouseReleased(int x, int y) {
+
+    }
+
 }

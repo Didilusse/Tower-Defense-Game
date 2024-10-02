@@ -53,6 +53,23 @@ public class Menu extends GameScene implements SceneMethods {
         }
     }
 
+    @Override
+    public void mousePressed(int x, int y) {
+        if(bPlaying.getBounds().contains(x, y)) {
+            bPlaying.setMousePressed(true);
+        }
+    }
+
+    @Override
+    public void mouseReleased(int x, int y) {
+        resetButtons();
+    }
+
+    private void resetButtons() {
+        bPlaying.resetBooleans();
+
+    }
+
     private void drawButton(Graphics g) {
         bPlaying.draw(g);
     }
