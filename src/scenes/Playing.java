@@ -3,6 +3,8 @@ package scenes;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import UI.BottomBar;
+import UI.MyButton;
 import helper.LevelBuild;
 import main.Game;
 import managers.TileManager;
@@ -11,17 +13,26 @@ public class Playing extends GameScene implements SceneMethods {
 
     private int[][] lvl;
     private TileManager tileManager;
+    private MyButton bMenu;
+
+    private BottomBar bottomBar;
 
     public Playing(Game game) {
         super(game);
-
+        initButtons();
         lvl = LevelBuild.getLevelData();
         tileManager = new TileManager();
+        bottomBar = new BottomBar(0, 640, 640, 100);
 
         //The level
 
 
     }
+
+    private void initButtons() {
+        bMenu = new MyButton("Menu", 2, 2, 100, 30);
+    }
+
 
     @Override
     public void render(Graphics g) {
@@ -31,6 +42,12 @@ public class Playing extends GameScene implements SceneMethods {
                 g.drawImage(tileManager.getSprite(id), x * 32, y * 32, null);
             }
         }
+        drawButtons(g);
+        bottomBar.draw(g );
+    }
+
+    private void drawButtons(Graphics g) {
+        bMenu.draw(g);
     }
 
     @Override
