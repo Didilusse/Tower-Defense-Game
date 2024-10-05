@@ -19,6 +19,7 @@ public class GameScreen extends JPanel {
         this.game = game;
 
         setPanelSize();
+
     }
 
     public void initInputs() {
@@ -30,7 +31,6 @@ public class GameScreen extends JPanel {
         addKeyListener(keyboardListener);
 
         requestFocus();
-
     }
 
     private void setPanelSize() {
@@ -50,3 +50,4 @@ public class GameScreen extends JPanel {
     }
 
 }
+

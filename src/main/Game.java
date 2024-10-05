@@ -22,9 +22,11 @@ public class Game extends JFrame implements Runnable {
     private Settings settings;
 
     public Game() {
+
+        initClasses();
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        initClasses();
         setResizable(false);
         add(gameScreen);
         pack();
@@ -77,8 +79,8 @@ public class Game extends JFrame implements Runnable {
         long now;
 
         while (true) {
-
             now = System.nanoTime();
+
             // Render
             if (now - lastFrame >= timePerFrame) {
                 repaint();

@@ -16,19 +16,11 @@ public class KeyboardListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_A)
-            GameStates.gameState = MENU;
 
-        else if (e.getKeyCode() == KeyEvent.VK_S)
-            GameStates.gameState = PLAYING;
-
-        else if (e.getKeyCode() == KeyEvent.VK_D)
-            GameStates.gameState = SETTINGS;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
 
     }
 

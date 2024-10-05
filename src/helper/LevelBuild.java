@@ -2,10 +2,10 @@ package helper;
 
 public class LevelBuild {
 
+    public static int[][] getLevelData() {
 
-    public static int[][] getLevelData(){
-        // Create a 2D int array
-        // where every value is a tile on the level.
+        // Creates a 2D int array
+        // where every index is a tile on the level.
 
         int[][] lvl = {
 
@@ -31,6 +31,7 @@ public class LevelBuild {
                 { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 
         };
+
         return lvl;
     }
 
