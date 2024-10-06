@@ -2,9 +2,8 @@ package helper;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.Scanner;
 
 public class LoadSave {
 
@@ -24,14 +23,39 @@ public class LoadSave {
 
     //txt file
     public static void CreateFile(){
-        File txtFile = new File("src/testTextFile.txt");
-
+        File txtFile = new File("testTextFile.txt");
         try {
             txtFile.createNewFile();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
+
+    public static void WriteToFile(){
+        File txtFile = new File("testTextFile.txt");
+        try {
+            PrintWriter pw = new PrintWriter(txtFile);
+            pw.println("Hello World");
+            pw.close();
+
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void ReadFromFile() {
+        File txtFile = new File("testTextFile.txt");
+        try {
+            Scanner sc = new Scanner(txtFile);
+            while (sc.hasNextLine()) {
+                System.out.println(sc.nextLine());
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
 
 }

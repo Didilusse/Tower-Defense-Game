@@ -29,7 +29,10 @@ public class Playing extends GameScene implements SceneMethods {
         tileManager = new TileManager();
         bottomBar = new BottomBar(0, 640, 640, 100, this);
 
-        LoadSave.CreateFile();
+        //LoadSave.CreateFile();
+        //LoadSave.WriteToFile();
+        LoadSave.ReadFromFile();
+
 
     }
 
