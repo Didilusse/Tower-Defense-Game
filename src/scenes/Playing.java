@@ -3,6 +3,7 @@ package scenes;
 import java.awt.Graphics;
 
 import helper.LevelBuild;
+import helper.LoadSave;
 import main.Game;
 import managers.TileManager;
 import objects.Tile;
@@ -27,6 +28,8 @@ public class Playing extends GameScene implements SceneMethods {
         lvl = LevelBuild.getLevelData();
         tileManager = new TileManager();
         bottomBar = new BottomBar(0, 640, 640, 100, this);
+
+        LoadSave.CreateFile();
 
     }
 
