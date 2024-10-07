@@ -29,11 +29,16 @@ public class Playing extends GameScene implements SceneMethods {
         tileManager = new TileManager();
         bottomBar = new BottomBar(0, 640, 640, 100, this);
 
-        //LoadSave.CreateFile();
-        //LoadSave.WriteToFile();
-        LoadSave.ReadFromFile();
+        createDefaultLevel();
 
 
+    }
+
+    private void createDefaultLevel() {
+        int[] arr = new int[400];
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = 0;
+        LoadSave.CreateLevel("new_level", arr);
     }
 
     @Override

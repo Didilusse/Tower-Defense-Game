@@ -23,7 +23,7 @@ public class LoadSave {
 
     //txt file
     public static void CreateFile(){
-        File txtFile = new File("testTextFile.txt");
+        File txtFile = new File("res/testTextFile.txt");
         try {
             txtFile.createNewFile();
         } catch (IOException e) {
@@ -31,11 +31,31 @@ public class LoadSave {
         }
     }
 
-    public static void WriteToFile(){
-        File txtFile = new File("testTextFile.txt");
+    public static void CreateLevel(String name, int[] idArr){
+        File newLevel = new File("res/" + name + ".txt");
+
+        if(newLevel.exists()){
+            System.out.println("File" + name + "already exists");
+            return;
+        } else {
+            try {
+                newLevel.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            WriteToFile(newLevel,idArr);
+        }
+    }
+
+    private static void WriteToFile(File f, int[] idArr){
         try {
-            PrintWriter pw = new PrintWriter(txtFile);
-            pw.println("Hello World");
+            PrintWriter pw = new PrintWriter(f);
+
+            for(Integer i : idArr){
+                pw.println(i);
+            }
+
             pw.close();
 
         }catch (FileNotFoundException e){
@@ -44,7 +64,7 @@ public class LoadSave {
     }
 
     public static void ReadFromFile() {
-        File txtFile = new File("testTextFile.txt");
+        File txtFile = new File("res/testTextFile.txt");
         try {
             Scanner sc = new Scanner(txtFile);
             while (sc.hasNextLine()) {
@@ -55,6 +75,8 @@ public class LoadSave {
             e.printStackTrace();
         }
     }
+
+
 
     
 
