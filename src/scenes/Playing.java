@@ -30,8 +30,13 @@ public class Playing extends GameScene implements SceneMethods {
         bottomBar = new BottomBar(0, 640, 640, 100, this);
 
         createDefaultLevel();
+        loadDefaultLevel();
 
 
+    }
+
+    private void loadDefaultLevel() {
+        lvl = LoadSave.GetLevelData("new_level");
     }
 
     private void createDefaultLevel() {

@@ -3,6 +3,7 @@ package helper;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LoadSave {
@@ -63,21 +64,32 @@ public class LoadSave {
         }
     }
 
-    public static void ReadFromFile() {
-        File txtFile = new File("res/testTextFile.txt");
+    public static ArrayList<Integer> ReadFromFile(File file) {
+        ArrayList<Integer> list = new ArrayList<>();
         try {
-            Scanner sc = new Scanner(txtFile);
+            Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
-                System.out.println(sc.nextLine());
+                list.add(Integer.parseInt(sc.nextLine()));
             }
             sc.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        return list;
     }
 
+    public static int[][] GetLevelData(String name){
+        File lvlFile = new File("res/" + name + ".txt");
+        if(lvlFile.exists()){
+            ArrayList<Integer> list = ReadFromFile(lvlFile);
+            return Util.ArrayListTo2DInt(list, 20, 20);
+        }else{
+            System.out.println("File" + name + "does not exists");
+            return null;
+        }
 
 
-    
+
+    }
 
 }
