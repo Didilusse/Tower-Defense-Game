@@ -35,6 +35,10 @@ public class Playing extends GameScene implements SceneMethods {
 
     }
 
+    public void saveLevel(){
+        LoadSave.SaveLevel("new_level", lvl);
+    }
+
     private void loadDefaultLevel() {
         lvl = LoadSave.GetLevelData("new_level");
     }
@@ -45,6 +49,7 @@ public class Playing extends GameScene implements SceneMethods {
             arr[i] = 0;
         LoadSave.CreateLevel("new_level", arr);
     }
+
 
     @Override
     public void render(Graphics g) {

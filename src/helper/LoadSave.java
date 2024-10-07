@@ -64,6 +64,17 @@ public class LoadSave {
         }
     }
 
+    public static void SaveLevel(String name, int[][] idArr){
+        File levelFile = new File("res/" + name + ".txt");
+        if(levelFile.exists()){
+            WriteToFile(levelFile,Util.TwoDto1DintArr(idArr));
+        }else{
+            System.out.println("File" + name + "does not exists");
+            return;
+        }
+
+    }
+
     public static ArrayList<Integer> ReadFromFile(File file) {
         ArrayList<Integer> list = new ArrayList<>();
         try {
