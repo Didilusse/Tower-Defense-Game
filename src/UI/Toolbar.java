@@ -11,12 +11,14 @@ import java.util.ArrayList;
 import objects.Tile;
 import scenes.Editing;
 
-public class Toolbar extends Bar {
+public class  Toolbar extends Bar {
     private Editing editing;
     private MyButton bMenu, bSave;
     private Tile selectedTile;
 
     private ArrayList<MyButton> tileButtons = new ArrayList<>();
+
+
 
     public Toolbar(int x, int y, int width, int height, Editing editing) {
         super(x, y, width, height);
@@ -166,5 +168,7 @@ public class Toolbar extends Bar {
             b.resetBooleans();
 
     }
+
+
 
 }
