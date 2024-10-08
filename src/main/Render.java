@@ -2,7 +2,6 @@ package main;
 
 import java.awt.Graphics;
 
-
 public class Render {
 
     private Game game;
@@ -30,11 +29,8 @@ public class Render {
                 game.getSettings().render(g);
 
                 break;
-
             case EDIT:
-
-                game.getEditer().render(g);
-
+                game.getEditor().render(g);
                 break;
             default:
                 break;
