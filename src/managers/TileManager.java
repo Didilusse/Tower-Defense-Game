@@ -17,11 +17,11 @@ public class TileManager {
     private BufferedImage atlas;
     public ArrayList<Tile> tiles = new ArrayList<>();
 
-    private ArrayList<Tile> roadsS = new ArrayList<>();
-    private ArrayList<Tile> roadsC = new ArrayList<>();
-    private ArrayList<Tile> corners = new ArrayList<>();
-    private ArrayList<Tile> beaches = new ArrayList<>();
-    private ArrayList<Tile> islands = new ArrayList<>();
+    public ArrayList<Tile> roadsS = new ArrayList<>();
+    public ArrayList<Tile> roadsC = new ArrayList<>();
+    public ArrayList<Tile> corners = new ArrayList<>();
+    public ArrayList<Tile> beaches = new ArrayList<>();
+    public ArrayList<Tile> islands = new ArrayList<>();
 
     public TileManager() {
 
@@ -90,23 +90,23 @@ public class TileManager {
         return atlas.getSubimage(xCord * 32, yCord * 32, 32, 32);
     }
 
-    public ArrayList<MyButton> getIslands() {
+    public ArrayList<Tile> getIslands() {
         return islands;
     }
 
-    public ArrayList<MyButton> getBeaches() {
+    public ArrayList<Tile> getBeaches() {
         return beaches;
     }
 
-    public ArrayList<MyButton> getCorners() {
+    public ArrayList<Tile> getCorners() {
         return corners;
     }
 
-    public ArrayList<MyButton> getRoadsC() {
+    public ArrayList<Tile> getRoadsC() {
         return roadsC;
     }
 
-    public ArrayList<MyButton> getRoadsS() {
+    public ArrayList<Tile> getRoadsS() {
         return roadsS;
     }
 

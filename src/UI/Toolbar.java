@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import objects.Tile;
 import scenes.Editing;
@@ -16,7 +18,11 @@ public class  Toolbar extends Bar {
     private MyButton bMenu, bSave;
     private Tile selectedTile;
 
-    private ArrayList<MyButton> tileButtons = new ArrayList<>();
+//    private ArrayList<MyButton> tileButtons = new ArrayList<>();
+
+    private Map<MyButton, ArrayList<Tile>> map = new HashMap<MyButton,ArrayList<Tile>>();
+
+    private MyButton bGrass, bWater, bRoadS, bRoadC, bWaterC, bWaterB, bWaterI;
 
 
 
@@ -38,12 +44,25 @@ public class  Toolbar extends Bar {
         int xOffset = (int) (w * 1.1f);
 
         int i = 0;
-        for (Tile tile : editing.getGame().getTileManager().tiles) {
-            tileButtons.add(new MyButton(tile.getName(), xStart + xOffset * i, yStart, w, h, i));
-            i++;
-        }
+
+        bGrass = new MyButton("Grass", xStart, yStart, w, h, i++);
+        bWater = new MyButton("Water", xStart * xOffset, yStart, w, h, i++);
+
+        initMapButton(bRoadS, editing.getGame().getTileManager().getRoadsS(), xStart, yStart, xOffset, w, h, i++);
+        initMapButton(bRoadC, editing.getGame().getTileManager().getRoadsC(), xStart, yStart, xOffset, w, h, i++);
+        initMapButton(bWaterC, editing.getGame().getTileManager().getCorners(), xStart, yStart, xOffset, w, h, i++);
+        initMapButton(bWaterB, editing.getGame().getTileManager().getBeaches(), xStart, yStart, xOffset, w, h, i++);
+        initMapButton(bWaterI, editing.getGame().getTileManager().getIslands(), xStart, yStart, xOffset, w, h, i++);
+
 
     }
+
+
+    private void initMapButton(MyButton b, ArrayList<Tile> list, int x, int y, int xOff, int w, int h, int id) {
+        b = new MyButton("",x+xOff*id, y, w, h, id);
+        map.put(b, list);
+    }
+
 
     private void saveLevel() {
         editing.saveLevel();
