@@ -222,5 +222,7 @@ public class  Toolbar extends Bar {
     }
 
 
-
+    public void rotateSprite() {
+        //TODO: Rotate the sprite or smth idk
+    }
 }
