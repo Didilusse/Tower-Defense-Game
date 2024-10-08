@@ -110,13 +110,15 @@ public class Editing extends GameScene implements SceneMethods {
 
     @Override
     public void mousePressed(int x, int y) {
-        // TODO Auto-generated method stub
+        if(y>=640)
+            toolbar.mousePressed(x, y);
 
     }
 
     @Override
     public void mouseReleased(int x, int y) {
-        // TODO Auto-generated method stub
+        if(y>=640)
+            toolbar.mouseReleased(x, y);
 
     }
 

@@ -46,7 +46,7 @@ public class  Toolbar extends Bar {
         int i = 0;
 
         bGrass = new MyButton("Grass", xStart, yStart, w, h, i++);
-        bWater = new MyButton("Water", xStart * xOffset, yStart, w, h, i++);
+        bWater = new MyButton("Water", xStart + xOffset, yStart, w, h, i++);
 
         initMapButton(bRoadS, editing.getGame().getTileManager().getRoadsS(), xStart, yStart, xOffset, w, h, i++);
         initMapButton(bRoadC, editing.getGame().getTileManager().getRoadsC(), xStart, yStart, xOffset, w, h, i++);
@@ -82,10 +82,47 @@ public class  Toolbar extends Bar {
         bMenu.draw(g);
         bSave.draw(g);
 
-        drawTileButtons(g);
+        drawNormalButtons(g,bGrass);
+        drawNormalButtons(g,bWater);
         drawSelectedTile(g);
+        drawMapButtons(g);
 
     }
+
+    private void drawNormalButtons(Graphics g, MyButton b) {
+        g.drawImage(getButtImg(b.getId()), b.x, b.y, b.width, b.height, null);
+        drawButtonFeedback(g, b);
+    }
+
+    private void drawMapButtons(Graphics g) {
+        for(Map.Entry<MyButton, ArrayList<Tile>> entry : map.entrySet()) {
+            MyButton b = entry.getKey();
+            BufferedImage img =  entry.getValue().get(0).getSprite();
+
+            g.drawImage(img, b.x, b.y, b.width, b.height, null);
+            drawButtonFeedback(g, b);
+        }
+    }
+
+    private void drawButtonFeedback(Graphics g, MyButton b){
+
+        // MouseOver
+        if (b.isMouseOver())
+            g.setColor(Color.white);
+        else
+            g.setColor(Color.BLACK);
+
+        // Border
+        g.drawRect(b.x, b.y, b.width, b.height);
+
+        // MousePressed
+        if (b.isMousePressed()) {
+            g.drawRect(b.x + 1, b.y + 1, b.width - 2, b.height - 2);
+            g.drawRect(b.x + 2, b.y + 2, b.width - 4, b.height - 4);
+        }
+
+    }
+
 
     private void drawSelectedTile(Graphics g) {
 
@@ -93,31 +130,6 @@ public class  Toolbar extends Bar {
             g.drawImage(selectedTile.getSprite(), 550, 650, 50, 50, null);
             g.setColor(Color.black);
             g.drawRect(550, 650, 50, 50);
-        }
-
-    }
-
-    private void drawTileButtons(Graphics g) {
-        for (MyButton b : tileButtons) {
-
-            // Sprite
-            g.drawImage(getButtImg(b.getId()), b.x, b.y, b.width, b.height, null);
-
-            // MouseOver
-            if (b.isMouseOver())
-                g.setColor(Color.white);
-            else
-                g.setColor(Color.BLACK);
-
-            // Border
-            g.drawRect(b.x, b.y, b.width, b.height);
-
-            // MousePressed
-            if (b.isMousePressed()) {
-                g.drawRect(b.x + 1, b.y + 1, b.width - 2, b.height - 2);
-                g.drawRect(b.x + 2, b.y + 2, b.width - 4, b.height - 4);
-            }
-
         }
 
     }
@@ -131,10 +143,19 @@ public class  Toolbar extends Bar {
             SetGameState(MENU);
         else if (bSave.getBounds().contains(x, y))
             saveLevel();
+        else if (bWater.getBounds().contains(x, y)) {
+            selectedTile = editing.getGame().getTileManager().getTile(bWater.getId());
+            editing.setSelectedTile(selectedTile);
+            return;
+        } else if (bGrass.getBounds().contains(x, y)){
+            selectedTile = editing.getGame().getTileManager().getTile(bGrass.getId());
+            editing.setSelectedTile(selectedTile);
+            return;
+        }
         else {
-            for (MyButton b : tileButtons) {
+            for(MyButton b : map.keySet()){
                 if (b.getBounds().contains(x, y)) {
-                    selectedTile = editing.getGame().getTileManager().getTile(b.getId());
+                    selectedTile = map.get(b).get(0);
                     editing.setSelectedTile(selectedTile);
                     return;
                 }
@@ -146,15 +167,21 @@ public class  Toolbar extends Bar {
     public void mouseMoved(int x, int y) {
         bMenu.setMouseOver(false);
         bSave.setMouseOver(false);
-        for (MyButton b : tileButtons)
+        bWater.setMouseOver(false);
+        bGrass.setMouseOver(false);
+        for (MyButton b : map.keySet())
             b.setMouseOver(false);
 
         if (bMenu.getBounds().contains(x, y))
             bMenu.setMouseOver(true);
         else if (bSave.getBounds().contains(x, y))
             bSave.setMouseOver(true);
+        else if (bWater.getBounds().contains(x, y))
+            bWater.setMouseOver(true);
+        else if (bGrass.getBounds().contains(x, y))
+            bGrass.setMouseOver(true);
         else {
-            for (MyButton b : tileButtons) {
+            for (MyButton b : map.keySet()) {
                 if (b.getBounds().contains(x, y)) {
                     b.setMouseOver(true);
                     return;
@@ -169,8 +196,12 @@ public class  Toolbar extends Bar {
             bMenu.setMousePressed(true);
         else if (bSave.getBounds().contains(x, y))
             bSave.setMousePressed(true);
+        else if (bWater.getBounds().contains(x, y))
+            bWater.setMousePressed(true);
+        else if (bGrass.getBounds().contains(x, y))
+            bGrass.setMousePressed(true);
         else {
-            for (MyButton b : tileButtons) {
+            for (MyButton b : map.keySet()) {
                 if (b.getBounds().contains(x, y)) {
                     b.setMousePressed(true);
                     return;
@@ -183,7 +214,9 @@ public class  Toolbar extends Bar {
     public void mouseReleased(int x, int y) {
         bMenu.resetBooleans();
         bSave.resetBooleans();
-        for (MyButton b : tileButtons)
+        bWater.resetBooleans();
+        bGrass.resetBooleans();
+        for (MyButton b : map.keySet())
             b.resetBooleans();
 
     }
