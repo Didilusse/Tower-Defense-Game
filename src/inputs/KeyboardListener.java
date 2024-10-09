@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 import main.Game;
 import main.GameStates;
 
+import static main.GameStates.EDIT;
+
 public class KeyboardListener implements KeyListener {
     private Game game;
     public KeyboardListener(Game game) {
@@ -20,7 +22,7 @@ public class KeyboardListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if(GameStates.gameState == EDIT){
-            game.getEditor().
+            game.getEditor().keyPressed(e);
         }
     }
 
