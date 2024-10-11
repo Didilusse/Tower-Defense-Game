@@ -21,12 +21,16 @@ public class Tile {
         this.name = name;
     }
 
-    public BufferedImage getSprite(int animationIndex){
+    public BufferedImage getSprite() {
+        return sprite[0];
+    }
+
+    public BufferedImage getSprite(int animationIndex) {
         return sprite[animationIndex];
     }
 
-    public BufferedImage getSprite() {
-        return sprite[0];
+    public boolean isAnimation(){
+        return sprite.length > 1;
     }
 
     public int getId() {

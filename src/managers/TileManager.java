@@ -86,6 +86,10 @@ public class TileManager {
         return tiles.get(id).getSprite();
     }
 
+    public BufferedImage getAniSprite(int id, int animationIndex) {
+        return tiles.get(id).getSprite(animationIndex);
+    }
+
     private BufferedImage[] getAniSprites(int xCord, int yCord) {
         BufferedImage[] arr = new BufferedImage[4];
         for(int i = 0; i < 4; i++){
@@ -97,6 +101,10 @@ public class TileManager {
 
     private BufferedImage getSprite(int xCord, int yCord) {
         return atlas.getSubimage(xCord * 32, yCord * 32, 32, 32);
+    }
+
+    public boolean isSpriteAnimation(int spriteID){
+        return tiles.get(spriteID).isAnimation();
     }
 
     public ArrayList<Tile> getIslands() {
