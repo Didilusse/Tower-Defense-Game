@@ -27,8 +27,8 @@ public class EnemyManager {
         enemyImgs[3] = atlas.getSubimage(96, 32, 32, 32);
     }
 
-    public void Update(){
-
+    public void update(){
+        testEnemy.move(0.5f,0);
     }
 
     public void draw(Graphics g){

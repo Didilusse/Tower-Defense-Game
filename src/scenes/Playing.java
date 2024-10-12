@@ -3,16 +3,18 @@ package scenes;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+
 import helper.LoadSave;
 import main.Game;
 import UI.ActionBar;
+import managers.EnemyManager;
 
 public class Playing extends GameScene implements SceneMethods {
 
     private int[][] lvl;
     private ActionBar bottomBar;
     private int mouseX, mouseY;
-    
+    private EnemyManager enemyManager;
 
     public Playing(Game game) {
         super(game);
@@ -21,15 +23,20 @@ public class Playing extends GameScene implements SceneMethods {
 
         bottomBar = new ActionBar(0, 640, 640, 100, this);
 
+        enemyManager = new EnemyManager(this);
+
     }
 
     private void loadDefaultLevel() {
         lvl = LoadSave.GetLevelData("new_level");
-
     }
 
     public void setLevel(int[][] lvl) {
         this.lvl = lvl;
+    }
+
+    public void update(){
+        enemyManager.update();
     }
 
     @Override
@@ -37,6 +44,7 @@ public class Playing extends GameScene implements SceneMethods {
 
         drawLevel(g);
         bottomBar.draw(g);
+        enemyManager.draw(g);
 
     }
 
