@@ -9,10 +9,9 @@ public class Enemy {
     private int ID;
     private int enemyType;
 
-    public Enemy(float x, float y, int health, int ID, int enemyType) {
+    public Enemy(float x, float y, int ID, int enemyType) {
         this.x = x;
         this.y = y;
-        this.health = health;
         this.ID = ID;
         this.enemyType = enemyType;
         bounds = new Rectangle((int) x, (int) y, 32, 32);

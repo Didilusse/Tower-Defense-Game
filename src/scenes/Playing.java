@@ -12,6 +12,7 @@ public class Playing extends GameScene implements SceneMethods {
     private int[][] lvl;
     private ActionBar bottomBar;
     private int mouseX, mouseY;
+    
 
     public Playing(Game game) {
         super(game);
