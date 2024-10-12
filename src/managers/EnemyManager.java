@@ -6,16 +6,17 @@ import scenes.Playing;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class EnemyManager {
     private Playing playing;
     private BufferedImage[] enemyImgs;
-    public Enemy testEnemy;
+    private ArrayList<Enemy> enemies = new ArrayList<>();
 
     public EnemyManager(Playing playing) {
         this.playing = playing;
         enemyImgs = new BufferedImage[4];
-        testEnemy = new Enemy(32 * 3,32 * 9,0,0);
+        addEnemy(3 * 32, 9 * 32);
         loadEnemyImgs();
     }
 
@@ -28,11 +29,17 @@ public class EnemyManager {
     }
 
     public void update(){
-        testEnemy.move(0.5f,0);
+        for(Enemy e : enemies)
+            e.move(0.5f,0);
+    }
+
+    public void addEnemy(int x, int y){
+        enemies.add(new Enemy(x,y,0,0));
     }
 
     public void draw(Graphics g){
-        drawEnemy(testEnemy, g);
+        for(Enemy e : enemies)
+            drawEnemy(e, g);
     }
 
     private void drawEnemy(Enemy e, Graphics g) {

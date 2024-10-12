@@ -84,6 +84,9 @@ public class Playing extends GameScene implements SceneMethods {
         if (y >= 640) {
             bottomBar.mousePressed(x, y);
         }
+        else{
+            enemyManager.addEnemy(x, y );
+        }
     }
 
     @Override
