@@ -36,6 +36,7 @@ public class Playing extends GameScene implements SceneMethods {
     }
 
     public void update(){
+        updateTick();
         enemyManager.update();
     }
 
@@ -52,13 +53,12 @@ public class Playing extends GameScene implements SceneMethods {
         for (int y = 0; y < lvl.length; y++) {
             for (int x = 0; x < lvl[y].length; x++) {
                 int id = lvl[y][x];
-                g.drawImage(getSprite(id), x * 32, y * 32, null);
+                if(isAnimation(id)){
+                    g.drawImage(getSprite(id,animationIndex), x * 32, y * 32, null);
+                } else
+                    g.drawImage(getSprite(id), x * 32, y * 32, null);
             }
         }
-    }
-
-    private BufferedImage getSprite(int spriteID) {
-        return game.getTileManager().getSprite(spriteID);
     }
 
     @Override

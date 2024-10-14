@@ -18,10 +18,6 @@ public class Editing extends GameScene implements SceneMethods {
     private boolean drawSelect;
     private Toolbar toolbar;
 
-    private int animationIndex;
-    private int tick;
-    private int ANIMATION_SPEED = 25;
-
     public Editing(Game game) {
         super(game);
         loadDefaultLevel();
@@ -31,25 +27,17 @@ public class Editing extends GameScene implements SceneMethods {
     private void loadDefaultLevel() {
         lvl = LoadSave.GetLevelData("new_level");
     }
-    @Override
-    public void render(Graphics g) {
+
+    public void update(){
         updateTick();
+    }
+    @Override
+    public void render(Graphics g) {;
         
         drawLevel(g);
         toolbar.draw(g);
         drawSelectedTile(g);
 
-    }
-
-    private void updateTick() {
-        tick++;
-        if(tick >= ANIMATION_SPEED){
-            tick = 0;
-            animationIndex++;
-            if(animationIndex >= 4){
-                animationIndex = 0;
-            }
-        }
     }
 
     private void drawLevel(Graphics g) {
@@ -62,18 +50,6 @@ public class Editing extends GameScene implements SceneMethods {
                     g.drawImage(getSprite(id), x * 32, y * 32, null);
             }
         }
-    }
-
-    private boolean isAnimation(int id) {
-        return game.getTileManager().isSpriteAnimation(id);
-    }
-
-    private BufferedImage getSprite(int spriteID) {
-        return game.getTileManager().getSprite(spriteID);
-    }
-
-    private BufferedImage getSprite(int spriteID, int animationIndex) {
-        return game.getTileManager().getAniSprite( spriteID,animationIndex);
     }
 
     private void drawSelectedTile(Graphics g) {
