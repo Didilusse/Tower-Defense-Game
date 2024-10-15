@@ -7,11 +7,13 @@ import scenes.Playing;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import static helper.Constants.Direction.*;
 
 public class EnemyManager {
     private Playing playing;
     private BufferedImage[] enemyImgs;
     private ArrayList<Enemy> enemies = new ArrayList<>();
+    private float speed = 0.5f;
 
     public EnemyManager(Playing playing) {
         this.playing = playing;
@@ -29,8 +31,36 @@ public class EnemyManager {
     }
 
     public void update(){
-        for(Enemy e : enemies)
-            e.move(0.5f,0);
+        for(Enemy e : enemies){
+            if(isNextTileRoad(e)){
+
+            }
+        }
+
+    }
+
+    private boolean isNextTileRoad(Enemy e) {
+        int newX = (int)(e.getX() + getSpeedX(e.getLastDir()));
+        int newY = (int)(e.getY() + getSpeedY(e.getLastDir()));
+
+        return false;
+    }
+
+    private float getSpeedY(int dir) {
+        if(dir == UP)
+            return -speed;
+        else if(dir == DOWN)
+            return speed;
+
+        return 0;
+    }
+
+    private float getSpeedX(int dir) {
+        if(dir == LEFT)
+            return -speed;
+        else if(dir == RIGHT)
+            return speed;
+        return 0;
     }
 
     public void addEnemy(int x, int y){
