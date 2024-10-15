@@ -1,6 +1,7 @@
 package enemies;
 
-import java.awt.*;
+import java.awt.Rectangle;
+import static helper.Constants.Direction.*;
 
 public class Enemy {
     private float x, y;
@@ -8,6 +9,7 @@ public class Enemy {
     private int health;
     private int ID;
     private int enemyType;
+    private int lastDir;
 
     public Enemy(float x, float y, int ID, int enemyType) {
         this.x = x;
@@ -15,6 +17,7 @@ public class Enemy {
         this.ID = ID;
         this.enemyType = enemyType;
         bounds = new Rectangle((int) x, (int) y, 32, 32);
+        lastDir = RIGHT;
     }
 
     public void move(float x, float y) {
@@ -44,5 +47,9 @@ public class Enemy {
 
     public int getEnemyType() {
         return enemyType;
+    }
+
+    public int getLastDir() {
+        return lastDir;
     }
 }
