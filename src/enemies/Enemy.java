@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import static helper.Constants.Direction.*;
 
 public class Enemy {
+
     private float x, y;
     private Rectangle bounds;
     private int health;
@@ -20,9 +21,28 @@ public class Enemy {
         lastDir = RIGHT;
     }
 
-    public void move(float x, float y) {
-        this.x += x;
-        this.y += y;
+    public void move(float speed, int dir) {
+        lastDir = dir;
+        switch (dir) {
+            case LEFT:
+                this.x -= speed;
+                break;
+            case UP:
+                this.y -= speed;
+                break;
+            case RIGHT:
+                this.x += speed;
+                break;
+            case DOWN:
+                this.y += speed;
+                break;
+        }
+    }
+
+    public void setPos(int x, int y) {
+        // Don't use this one for moving the enemy.
+        this.x = x;
+        this.y = y;
     }
 
     public float getX() {
@@ -52,4 +72,5 @@ public class Enemy {
     public int getLastDir() {
         return lastDir;
     }
+
 }

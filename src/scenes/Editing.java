@@ -28,12 +28,13 @@ public class Editing extends GameScene implements SceneMethods {
         lvl = LoadSave.GetLevelData("new_level");
     }
 
-    public void update(){
+    public void update() {
         updateTick();
     }
+
     @Override
-    public void render(Graphics g) {;
-        
+    public void render(Graphics g) {
+
         drawLevel(g);
         toolbar.draw(g);
         drawSelectedTile(g);
@@ -44,8 +45,8 @@ public class Editing extends GameScene implements SceneMethods {
         for (int y = 0; y < lvl.length; y++) {
             for (int x = 0; x < lvl[y].length; x++) {
                 int id = lvl[y][x];
-                if(isAnimation(id)){
-                    g.drawImage(getSprite(id,animationIndex), x * 32, y * 32, null);
+                if (isAnimation(id)) {
+                    g.drawImage(getSprite(id, animationIndex), x * 32, y * 32, null);
                 } else
                     g.drawImage(getSprite(id), x * 32, y * 32, null);
             }
@@ -114,15 +115,14 @@ public class Editing extends GameScene implements SceneMethods {
 
     @Override
     public void mousePressed(int x, int y) {
-        if(y>=640)
+        if (y >= 640)
             toolbar.mousePressed(x, y);
 
     }
 
     @Override
     public void mouseReleased(int x, int y) {
-        if(y>=640)
-            toolbar.mouseReleased(x, y);
+        toolbar.mouseReleased(x, y);
 
     }
 
@@ -136,10 +136,9 @@ public class Editing extends GameScene implements SceneMethods {
 
     }
 
-    public void keyPressed(KeyEvent e){
-        if(e.getKeyCode()==KeyEvent.VK_R){
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_R)
             toolbar.rotateSprite();
-        }
     }
 
 }
