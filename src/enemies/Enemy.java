@@ -1,11 +1,10 @@
 package enemies;
 
 import java.awt.Rectangle;
-import static helper.Constants.Direction.*;
 
-public class Enemy {
-
-    private float x, y;
+public abstract class Enemy {
+    private float x;
+    private float y;
     private Rectangle bounds;
     private int health;
     private int ID;
@@ -17,60 +16,51 @@ public class Enemy {
         this.y = y;
         this.ID = ID;
         this.enemyType = enemyType;
-        bounds = new Rectangle((int) x, (int) y, 32, 32);
-        lastDir = RIGHT;
+        this.bounds = new Rectangle((int)x, (int)y, 32, 32);
+        this.lastDir = -1;
     }
 
     public void move(float speed, int dir) {
-        lastDir = dir;
+        this.lastDir = dir;
         switch (dir) {
-            case LEFT:
-                this.x -= speed;
-                break;
-            case UP:
-                this.y -= speed;
-                break;
-            case RIGHT:
-                this.x += speed;
-                break;
-            case DOWN:
-                this.y += speed;
-                break;
+            case 0 -> this.x -= speed;
+            case 1 -> this.y -= speed;
+            case 2 -> this.x += speed;
+            case 3 -> this.y += speed;
         }
+
     }
 
     public void setPos(int x, int y) {
-        // Don't use this one for moving the enemy.
-        this.x = x;
-        this.y = y;
+        this.x = (float)x;
+        this.y = (float)y;
     }
 
     public float getX() {
-        return x;
+        return this.x;
     }
 
     public float getY() {
-        return y;
+        return this.y;
     }
 
     public Rectangle getBounds() {
-        return bounds;
+        return this.bounds;
     }
 
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     public int getID() {
-        return ID;
+        return this.ID;
     }
 
     public int getEnemyType() {
-        return enemyType;
+        return this.enemyType;
     }
 
     public int getLastDir() {
-        return lastDir;
+        return this.lastDir;
     }
-
 }

@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import enemies.Enemy;
+import enemies.Orc;
 import helper.LoadSave;
 import scenes.Playing;
 import static helper.Constants.Direction.*;
@@ -119,7 +120,7 @@ public class EnemyManager {
     }
 
     public void addEnemy(int x, int y) {
-        enemies.add(new Enemy(x, y, 0, 0));
+        enemies.add(new Orc(x, y, 0));
     }
 
     public void draw(Graphics g) {
