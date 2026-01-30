@@ -39,4 +39,8 @@ public class TowerManager {
 
     public void update() {
     }
+
+    public BufferedImage[] getTowerImgs() {
+        return towerImgs;
+    }
 }

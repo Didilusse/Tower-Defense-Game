@@ -120,4 +120,8 @@ public class Playing extends GameScene implements SceneMethods {
 
     }
 
+    public TowerManager getTowerManager() {
+        return towerManager;
+    }
+
 }
