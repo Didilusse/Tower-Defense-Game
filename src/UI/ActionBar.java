@@ -42,7 +42,11 @@ public class ActionBar extends Bar {
         bMenu.draw(g);
 
         for(MyButton b : towerButtons) {
+            g.setColor(Color.GRAY);
+            g.fillRect(b.x, b.y, b.width, b.height);
             g.drawImage(playing.getTowerManager().getTowerImgs()[b.getId()], b.x, b.y, b.width, b.height, null);
+
+            drawButtonFeedback(g, b);
 
         }
     }
@@ -65,18 +69,42 @@ public class ActionBar extends Bar {
 
     public void mouseMoved(int x, int y) {
         bMenu.setMouseOver(false);
+
+        for (MyButton b : towerButtons) {
+            b.setMouseOver(false);
+        }
+
         if (bMenu.getBounds().contains(x, y))
             bMenu.setMouseOver(true);
+        else{
+            for(MyButton b : towerButtons) {
+                if(b.getBounds().contains(x, y)) {
+                    b.setMouseOver(true);
+                    return;
+                }
+            }
+        }
     }
 
     public void mousePressed(int x, int y) {
         if (bMenu.getBounds().contains(x, y))
             bMenu.setMousePressed(true);
+        else{
+            for(MyButton b : towerButtons) {
+                if(b.getBounds().contains(x, y)) {
+                    b.setMousePressed(true);
+                    return;
+                }
+            }
+        }
 
     }
 
     public void mouseReleased(int x, int y) {
         bMenu.resetBooleans();
+        for (MyButton b : towerButtons) {
+            b.resetBooleans();
+        }
 
     }
 
