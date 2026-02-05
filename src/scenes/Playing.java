@@ -10,6 +10,7 @@ import managers.EnemyManager;
 import managers.TowerManager;
 import objects.PathPoint;
 import UI.ActionBar;
+import objects.Tower;
 
 public class Playing extends GameScene implements SceneMethods {
 
@@ -19,6 +20,7 @@ public class Playing extends GameScene implements SceneMethods {
     private EnemyManager enemyManager;
     private TowerManager towerManager;
     private PathPoint start, end;
+    private Tower selectedTower;
 
     public Playing(Game game) {
         super(game);
@@ -56,7 +58,13 @@ public class Playing extends GameScene implements SceneMethods {
         actionBar.draw(g);
         enemyManager.draw(g);
         towerManager.draw(g);
+        drawSelectedTower(g);
 
+    }
+
+    private void drawSelectedTower(Graphics g) {
+        if(selectedTower != null)
+            g.drawImage(towerManager.getTowerImgs()[selectedTower.getTowerType()], mouseX, mouseY, null);
     }
 
     private void drawLevel(Graphics g) {
@@ -124,4 +132,7 @@ public class Playing extends GameScene implements SceneMethods {
         return towerManager;
     }
 
+    public void setSelectedTower(Tower selectedTower) {
+        this.selectedTower = selectedTower;
+    }
 }

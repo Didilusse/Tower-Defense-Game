@@ -6,6 +6,7 @@ import static main.GameStates.SetGameState;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import objects.Tower;
 import scenes.Playing;
 
 public class ActionBar extends Bar {
@@ -14,7 +15,7 @@ public class ActionBar extends Bar {
     private MyButton bMenu;
 
     private MyButton[] towerButtons;
-
+    private Tower selectedTower;
     public ActionBar(int x, int y, int width, int height, Playing playing) {
         super(x, y, width, height);
         this.playing = playing;
@@ -64,6 +65,15 @@ public class ActionBar extends Bar {
     public void mouseClicked(int x, int y) {
         if (bMenu.getBounds().contains(x, y))
             SetGameState(MENU);
+        else{
+            for(MyButton b : towerButtons) {
+                if(b.getBounds().contains(x, y)) {
+                    selectedTower = new Tower(0,0,-1,b.getId());
+                    playing.setSelectedTower(selectedTower);
+                    return;
+                }
+            }
+        }
 
     }
 
