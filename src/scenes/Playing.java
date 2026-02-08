@@ -97,8 +97,13 @@ public class Playing extends GameScene implements SceneMethods {
     public void mouseClicked(int x, int y) {
         if (y >= 640)
             actionBar.mouseClicked(x, y);
-//		else
-//			enemyManager.addEnemy(x, y);
+		else{
+            if(selectedTower != null){
+                towerManager.addTower(selectedTower, mouseX, mouseY);
+                selectedTower = null;
+            }
+        }
+
     }
 
     @Override
