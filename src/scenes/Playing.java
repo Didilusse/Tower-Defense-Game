@@ -11,7 +11,7 @@ import managers.TowerManager;
 import objects.PathPoint;
 import UI.ActionBar;
 import objects.Tower;
-
+import static helper.Constants.Tiles.GRASS_TILE;
 public class Playing extends GameScene implements SceneMethods {
 
     private int[][] lvl;
@@ -99,11 +99,20 @@ public class Playing extends GameScene implements SceneMethods {
             actionBar.mouseClicked(x, y);
 		else{
             if(selectedTower != null){
-                towerManager.addTower(selectedTower, mouseX, mouseY);
-                selectedTower = null;
+                if(isTileGrass(mouseX,mouseY)){
+                    towerManager.addTower(selectedTower, mouseX, mouseY);
+                    selectedTower = null;
+                }
+
             }
         }
 
+    }
+
+    private boolean isTileGrass(int x, int y) {
+        int id = lvl[y / 32][x / 32];
+        int tileType = game.getTileManager().getTile(id).getTileType();
+        return tileType == GRASS_TILE;
     }
 
     @Override
